@@ -1,0 +1,341 @@
+{
+ "built_at": "2026-10-04T14:52:14+00:00",
+ "score_version": "1.0",
+ "periods": {
+  "passenger_period": "2025-05 to 2026-04 (latest 12 complete months)",
+  "delay_period": "2023-08 to 2026-07 (three years)",
+  "delay_latest_period": "2025-08 to 2026-07 (latest 12 months)",
+  "route_period": "calendar 2025",
+  "forecast_edition": "2025 edition (published March 2026), fiscal 2035 vs 2025",
+  "size_period": "calendar 2025"
+ },
+ "sources": [
+  {
+   "source": "BTS T-100 airport-month summary (data.bts.gov API)",
+   "file": "t100_by_origin.csv",
+   "url": "https://data.bts.gov/api/views/r495-tyji/rows.csv?accessType=DOWNLOAD",
+   "status": "reused",
+   "fetched_at": "2026-10-04T13:09:05+00:00"
+  },
+  {
+   "source": "FAA Terminal Area Forecast",
+   "file": "taf2025.zip",
+   "url": "https://taf.faa.gov/Downloads/APO100_TAF_Final_2025.zip",
+   "status": "reused",
+   "fetched_at": "2026-10-04T13:09:06+00:00"
+  },
+  {
+   "source": "FAA passenger boardings",
+   "file": "arp-cy2025-commercial-service-enplanements.xlsx",
+   "url": "https://www.faa.gov/airports/planning_capacity/passenger_allcargo_stats/passenger/arp-cy2025-commercial-service-enplanements.xlsx",
+   "status": "reused",
+   "fetched_at": "2026-10-04T13:09:08+00:00"
+  },
+  {
+   "source": "OurAirports (code crosswalk)",
+   "file": "airports.csv",
+   "url": "https://davidmegginson.github.io/ourairports-data/airports.csv",
+   "status": "reused",
+   "fetched_at": "2026-10-04T13:09:09+00:00"
+  },
+  {
+   "source": "BTS Master Coordinate table",
+   "file": "master_cord.zip",
+   "url": "https://www.transtats.bts.gov/DL_SelectFields.aspx?gnoyr_VQ=FLL&QO_fu146_anzr=N8vn6v10%20f722146%20gnoyr5",
+   "status": "reused",
+   "fetched_at": "2026-10-04T13:09:22+00:00"
+  },
+  {
+   "source": "BTS Airline Delay Causes 2019",
+   "file": "dc_2019.zip",
+   "url": "https://www.transtats.bts.gov/OT_Delay/ot_delaycause1_DL.aspx",
+   "status": "reused",
+   "fetched_at": "2026-10-04T13:09:39+00:00"
+  },
+  {
+   "source": "BTS Airline Delay Causes 2020",
+   "file": "dc_2020.zip",
+   "url": "https://www.transtats.bts.gov/OT_Delay/ot_delaycause1_DL.aspx",
+   "status": "reused",
+   "fetched_at": "2026-10-04T13:09:53+00:00"
+  },
+  {
+   "source": "BTS Airline Delay Causes 2021",
+   "file": "dc_2021.zip",
+   "url": "https://www.transtats.bts.gov/OT_Delay/ot_delaycause1_DL.aspx",
+   "status": "reused",
+   "fetched_at": "2026-10-04T13:10:11+00:00"
+  },
+  {
+   "source": "BTS Airline Delay Causes 2022",
+   "file": "dc_2022.zip",
+   "url": "https://www.transtats.bts.gov/OT_Delay/ot_delaycause1_DL.aspx",
+   "status": "reused",
+   "fetched_at": "2026-10-04T13:10:25+00:00"
+  },
+  {
+   "source": "BTS Airline Delay Causes 2023",
+   "file": "dc_2023.zip",
+   "url": "https://www.transtats.bts.gov/OT_Delay/ot_delaycause1_DL.aspx",
+   "status": "reused",
+   "fetched_at": "2026-10-04T13:10:39+00:00"
+  },
+  {
+   "source": "BTS Airline Delay Causes 2024",
+   "file": "dc_2024.zip",
+   "url": "https://www.transtats.bts.gov/OT_Delay/ot_delaycause1_DL.aspx",
+   "status": "reused",
+   "fetched_at": "2026-10-04T13:10:57+00:00"
+  },
+  {
+   "source": "BTS Airline Delay Causes 2025",
+   "file": "dc_2025.zip",
+   "url": "https://www.transtats.bts.gov/OT_Delay/ot_delaycause1_DL.aspx",
+   "status": "reused",
+   "fetched_at": "2026-10-04T13:11:15+00:00"
+  },
+  {
+   "source": "BTS Airline Delay Causes 2026",
+   "file": "dc_2026.zip",
+   "url": "https://www.transtats.bts.gov/OT_Delay/ot_delaycause1_DL.aspx",
+   "status": "reused",
+   "fetched_at": "2026-10-04T13:11:24+00:00"
+  },
+  {
+   "source": "BTS T-100 Segment 2019",
+   "file": "t100_2019.zip",
+   "url": "https://www.transtats.bts.gov/DL_SelectFields.aspx?gnoyr_VQ=FMG&QO_fu146_anzr=Nv4%20Pn44vr45",
+   "status": "reused",
+   "fetched_at": "2026-10-04T13:14:17+00:00"
+  },
+  {
+   "source": "BTS T-100 Segment 2024",
+   "file": "t100_2024.zip",
+   "url": "https://www.transtats.bts.gov/DL_SelectFields.aspx?gnoyr_VQ=FMG&QO_fu146_anzr=Nv4%20Pn44vr45",
+   "status": "reused",
+   "fetched_at": "2026-10-04T13:17:42+00:00"
+  },
+  {
+   "source": "BTS T-100 Segment 2025",
+   "file": "t100_2025.zip",
+   "url": "https://www.transtats.bts.gov/DL_SelectFields.aspx?gnoyr_VQ=FMG&QO_fu146_anzr=Nv4%20Pn44vr45",
+   "status": "reused",
+   "fetched_at": "2026-10-04T13:20:56+00:00"
+  },
+  {
+   "source": "BTS T-100 Segment 2026",
+   "file": "t100_2026.zip",
+   "url": "https://www.transtats.bts.gov/DL_SelectFields.aspx?gnoyr_VQ=FMG&QO_fu146_anzr=Nv4%20Pn44vr45",
+   "status": "reused",
+   "fetched_at": "2026-10-04T13:22:39+00:00"
+  }
+ ],
+ "rows": {
+  "airport_metrics": 402,
+  "airport_warnings": 772,
+  "airport_year": 3198,
+  "airport_month": 36017,
+  "airport_routes": 99666
+ },
+ "checks_passed": "37 of 37",
+ "checks": [
+  {
+   "check": "airport count in the expected range",
+   "ok": true,
+   "detail": "402 FAA primary airports"
+  },
+  {
+   "check": "airport codes are unique",
+   "ok": true,
+   "detail": "402 unique of 402"
+  },
+  {
+   "check": "FAA forecast matched for at least 395 airports",
+   "ok": true,
+   "detail": "401 of 402; unmatched: ['DJT']"
+  },
+  {
+   "check": "passenger window has 12 months",
+   "ok": true,
+   "detail": "[(2025, 5), (2026, 4)]"
+  },
+  {
+   "check": "delay data covers at least 36 months",
+   "ok": true,
+   "detail": "91 months"
+  },
+  {
+   "check": "no negative passengers",
+   "ok": true,
+   "detail": "airport-month table"
+  },
+  {
+   "check": "no negative seats",
+   "ok": true,
+   "detail": "airport-month table"
+  },
+  {
+   "check": "no negative flights",
+   "ok": true,
+   "detail": "airport-month table"
+  },
+  {
+   "check": "coverage load_factor_pct",
+   "ok": true,
+   "detail": "398 of 402 (99%), need 95%"
+  },
+  {
+   "check": "coverage passenger_growth_since_2019_pct",
+   "ok": true,
+   "detail": "371 of 402 (92%), need 88%"
+  },
+  {
+   "check": "coverage forecast_passenger_growth_pct",
+   "ok": true,
+   "detail": "401 of 402 (100%), need 95%"
+  },
+  {
+   "check": "coverage system_delay_rate_pct",
+   "ok": true,
+   "detail": "343 of 402 (85%), need 75%"
+  },
+  {
+   "check": "coverage forecast_flight_growth_pct",
+   "ok": true,
+   "detail": "401 of 402 (100%), need 95%"
+  },
+  {
+   "check": "range load_factor_pct in [20, 100]",
+   "ok": true,
+   "detail": "0 out of range []"
+  },
+  {
+   "check": "range system_delay_rate_pct in [0, 50]",
+   "ok": true,
+   "detail": "0 out of range []"
+  },
+  {
+   "check": "range total_delay_rate_pct in [0, 70]",
+   "ok": true,
+   "detail": "0 out of range []"
+  },
+  {
+   "check": "range forecast_passenger_growth_pct in [-50, 200]",
+   "ok": true,
+   "detail": "0 out of range []"
+  },
+  {
+   "check": "range forecast_flight_growth_pct in [-50, 200]",
+   "ok": true,
+   "detail": "0 out of range []"
+  },
+  {
+   "check": "range cargo_share_of_flights_pct in [0, 100]",
+   "ok": true,
+   "detail": "0 out of range []"
+  },
+  {
+   "check": "range long_haul_share_pct in [0, 100]",
+   "ok": true,
+   "detail": "0 out of range []"
+  },
+  {
+   "check": "range top_airline_share_pct in [0, 100]",
+   "ok": true,
+   "detail": "0 out of range []"
+  },
+  {
+   "check": "range passenger_score in [0, 100]",
+   "ok": true,
+   "detail": "0 out of range []"
+  },
+  {
+   "check": "range flight_score in [0, 100]",
+   "ok": true,
+   "detail": "0 out of range []"
+  },
+  {
+   "check": "range total_score in [0, 100]",
+   "ok": true,
+   "detail": "0 out of range []"
+  },
+  {
+   "check": "spread load_factor_pct",
+   "ok": true,
+   "detail": "10th pct 52.5, median 75.5, 90th pct 82.2"
+  },
+  {
+   "check": "spread passenger_growth_since_2019_pct",
+   "ok": true,
+   "detail": "10th pct -33.5, median 4.4, 90th pct 45.1"
+  },
+  {
+   "check": "spread forecast_passenger_growth_pct",
+   "ok": true,
+   "detail": "10th pct 0.0, median 18.1, 90th pct 31.7"
+  },
+  {
+   "check": "spread system_delay_rate_pct",
+   "ok": true,
+   "detail": "10th pct 2.3, median 4.0, 90th pct 6.2"
+  },
+  {
+   "check": "spread forecast_flight_growth_pct",
+   "ok": true,
+   "detail": "10th pct -1.1, median 9.3, 90th pct 24.9"
+  },
+  {
+   "check": "BTS passengers vs FAA boardings within 15% for most airports",
+   "ok": true,
+   "detail": "369 of 400 (92%); median ratio 1.008"
+  },
+  {
+   "check": "every large airport has full data",
+   "ok": true,
+   "detail": "30 of 30"
+  },
+  {
+   "check": "no total score without full data",
+   "ok": true,
+   "detail": "59 non-full airports"
+  },
+  {
+   "check": "every full-data airport has a total score",
+   "ok": true,
+   "detail": "343 full-data airports"
+  },
+  {
+   "check": "legal-limit warnings present",
+   "ok": true,
+   "detail": "11 airports carry a binding legal limit"
+  },
+  {
+   "check": "confidence label has a real spread",
+   "ok": true,
+   "detail": "{'high': 164, 'low': 152, 'medium': 86}"
+  },
+  {
+   "check": "data tiers",
+   "ok": true,
+   "detail": "{'full': 343, 'partial': 55, 'too_thin': 4}"
+  },
+  {
+   "check": "scoring twice gives identical tables (deterministic)",
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "summary": {
+  "airports": 402,
+  "data_tiers": {
+   "full": 343,
+   "partial": 55,
+   "too_thin": 4
+  },
+  "confidence": {
+   "high": 164,
+   "low": 152,
+   "medium": 86
+  }
+ }
+}

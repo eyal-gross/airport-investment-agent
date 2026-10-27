@@ -1,0 +1,363 @@
+{
+ "summary": {
+  "date": "2026-10-04 15:53",
+  "model": "claude-sonnet-5-5",
+  "questions": 7,
+  "passed": 7,
+  "numbers_in_answers": 223,
+  "answers_with_untraceable_numbers": 0,
+  "answers_rewritten_once": 1,
+  "total_seconds": 53.4,
+  "avg_seconds": 7.6,
+  "input_tokens": 205404,
+  "output_tokens": 5374
+ },
+ "results": [
+  {
+   "id": "A1",
+   "group": "core",
+   "conversation": "A1",
+   "question": "Which airports in New England are strong candidates for terminal expansion?",
+   "pass_when": "A ranked list from the six states, scores shown, reasons given.",
+   "passed": true,
+   "checks": {
+    "used rank_airports": true,
+    "says /Boston|BOS/": true,
+    "says /Burlington|BTV/": true,
+    "says /\\b82\\.9\\b/": true,
+    "number check passed (no fallback)": true,
+    "no error": true,
+    "footer present": true
+   },
+   "answer": "**The strongest New England candidates are Boston (BOS), Burlington (BTV) and Portland, Maine (PWM).** Bangor (BGR) and Hartford (BDL) follow. The score is a proxy for how much added capacity would be filled. It is not a measure of terminal need or return, and there is no cost data.\n\n| Airport | Score | Planes full | Passenger growth since 2019 | System delay | FAA forecast passenger growth | FAA forecast flight growth |\n|---|---|---|---|---|---|---|\n| Boston (BOS), large | 82.9 | 81.7% | 1.2% | 9.1% | 26.5% | 23.8% |\n| Burlington (BTV), small hub | 79.2 | 83.0% | 2.3% | 5.5% | 22.9% | 23.0% |\n| Portland (PWM), small hub | 77.4 | 82.8% | 17.2% | 4.6% | 21.6% | 23.3% |\n| Bangor (BGR), nonhub | 71.8 | 80.4% | 40.8% | 4.7% | 24.1% | 15.2% |\n| Hartford (BDL), medium | 65.9 | 81.3% | -2.7% | 4.9% | 15.7% | 16.5% |\n\n- **Boston:** It has the highest system delay rate in the group, and it is flagged as strained. It also has the largest absolute FAA-forecast gain, about 5.6 million extra boardings a year by 2035.\n- **Burlington:** Its planes are the fullest in the region. It is flagged as strained. Passenger growth has been modest, and the FAA forecasts about 164,000 extra boardings.\n- **Portland:** Passengers are up 17.2% since 2019, with seats up 21.6%, so airlines have already added capacity. It is not flagged as strained. The FAA forecasts about 278,000 extra boardings.\n- **Bangor:** Passenger growth has been strong, but the flight-side forecast is weaker than at the three above.\n\nFour airports are not ranked because their data is partial or thin: New Haven (HVN), Cape Cod Gateway (HYA), Block Island (BID) and Westerly (WST). I have not scored them.\n\nCaveats:\n- System delay includes ordinary weather and is coded by airlines.\n- FAA forecasts tend to run high.\n- Load factor here is passengers divided by seats, not the official measure.\n\nGate counts, terminal utilization and construction plans are not in the data, so check those next. I can pull a detailed profile or monthly seasonality for any of these airports.",
+   "tools": [
+    {
+     "name": "rank_airports",
+     "input": {
+      "region": "new england"
+     },
+     "is_error": false
+    }
+   ],
+   "number_check": "passed",
+   "unverified_numbers": [],
+   "numbers_in_answer": 38,
+   "warnings": [],
+   "footer": {
+    "data_period": "BTS T-100 airport-month summary, 2025-05 to 2026-04 (latest 12 complete months); FAA Terminal Area Forecast, 2025 edition (published March 2026), fiscal 2035 vs 2025; BTS Airline Delay Causes, 2023-08 to 2026-07 (three years); FAA passenger boarding data CY2025, calendar 2025",
+    "assumptions": "proxies, not direct measurements: Capacity-need score, Flight-side score, How full the planes are, FAA forecast passenger growth, System delay rate, FAA forecast flight growth; scores are relative (position among full-data airports) and rank upside, not return - no cost data exists",
+    "confidence": "Medium",
+    "confidence_reason": "the answer uses proxy measures (scores, system delay rate, load factor or forecasts)"
+   },
+   "model_calls": 2,
+   "seconds": 8.5,
+   "input_tokens": 14494,
+   "output_tokens": 912,
+   "model": "claude-sonnet-5-5"
+  },
+  {
+   "id": "A2",
+   "group": "core",
+   "conversation": "A2",
+   "question": "Compare LA and Santa Ana airport congestion levels.",
+   "pass_when": "LAX vs SNA side by side, a clear verdict, Santa Ana's legal cap flagged.",
+   "passed": true,
+   "checks": {
+    "used compare_airports": true,
+    "airports LAX+SNA in the tool calls": true,
+    "says /4\\.8/": true,
+    "says /3\\.9/": true,
+    "says /cap|capped|limit/": true,
+    "number check passed (no fallback)": true,
+    "no error": true,
+    "footer present": true
+   },
+   "answer": "Los Angeles International (LAX) is somewhat more congested than John Wayne/Orange County (SNA), but the gap is modest. I assumed \"LA\" means LAX. The same metro area also has Ontario (ONT), Burbank (BUR) and Long Beach (LGB). \"Santa Ana\" is SNA.\n\n| Measure | LAX | SNA |\n|---|---|---|\n| System delay rate, 3 years | 4.8% | 3.9% |\n| System delay rate, latest 12 months | 5.0% | 4.3% |\n| Overall delay rate (any cause, 15+ min late) | 18.9% | 17.5% |\n| Share of delays coded \"system\" | 25.7% | 22.4% |\n| Load factor | 82.1% | 80.4% |\n\nThe system delay rate is our congestion measure. Airlines code that category, and it includes ordinary weather, so it is mostly but not purely congestion. LAX is higher on all three delay rates, by about 1 percentage point or less. Neither airport is flagged as strained.\n\nFor both, most delays come from airline causes and late-arriving aircraft rather than the system category. At SNA, late aircraft account for 39.9% of delays. At LAX they account for 33.4%.\n\nTwo warnings:\n- **LAX:** Capacity was cut. Seats are down 12.8% against 2019 and passengers are down 15.7%. The full planes reflect fewer seats, not rising demand.\n- **SNA:** It has a legal cap, a departure limit and a night curfew. The cap is 12.2 or 12.5 million annual passengers counting arrivals and departures. In our departing-only units that is roughly 6.1 to 6.25 million. SNA had 5.59 million passengers in the latest 12 months. Which cap figure applies is not verified, and the legal-limits list is partial. Added capacity at SNA may be constrained regardless of delays.\n\nThe capacity-need scores are 75.3 for LAX and 62.0 for SNA. The score is a proxy for upside only and says nothing about cost or return.",
+   "tools": [
+    {
+     "name": "find_airport",
+     "input": {
+      "query": "LA"
+     },
+     "is_error": false
+    },
+    {
+     "name": "find_airport",
+     "input": {
+      "query": "Santa Ana"
+     },
+     "is_error": false
+    },
+    {
+     "name": "compare_airports",
+     "input": {
+      "airport_codes": [
+       "LAX",
+       "SNA"
+      ]
+     },
+     "is_error": false
+    }
+   ],
+   "number_check": "passed",
+   "unverified_numbers": [],
+   "numbers_in_answer": 27,
+   "warnings": [
+    "SNA: legal_limit",
+    "LAX: capacity_cut"
+   ],
+   "footer": {
+    "data_period": "BTS T-100 airport-month summary, 2025-05 to 2026-04 (latest 12 complete months); BTS Airline Delay Causes, 2023-08 to 2026-07 (three years) / 2025-08 to 2026-07 (latest 12 months); BTS T-100 Segment, calendar 2025",
+    "assumptions": "proxies, not direct measurements: Capacity-need score, How full the planes are, System delay rate; 'LA' was taken to mean LAX; scores are relative (position among full-data airports) and rank upside, not return - no cost data exists",
+    "confidence": "Medium",
+    "confidence_reason": "LAX: capacity cut; SNA: legal limit; the answer uses proxy measures (scores, system delay rate, load factor or forecasts); an airport name was resolved by default"
+   },
+   "model_calls": 3,
+   "seconds": 8.7,
+   "input_tokens": 28526,
+   "output_tokens": 845,
+   "model": "claude-sonnet-5-5"
+  },
+  {
+   "id": "A6",
+   "group": "follow-up",
+   "conversation": "A2",
+   "question": "And how did congestion at those two look in 2023?",
+   "pass_when": "Uses the same two airports without being told again, and 2023 values.",
+   "passed": true,
+   "checks": {
+    "used compare_airports": true,
+    "airports LAX+SNA in the tool calls": true,
+    "says /2023/": true,
+    "says /5\\.6/": true,
+    "says /4\\.2/": true,
+    "number check passed (no fallback)": true,
+    "no error": true,
+    "footer present": true
+   },
+   "answer": "Congestion was higher at both airports in 2023 than in the latest period, and LAX was still the more congested of the two. The tool reports 12 months of delay data for calendar 2023 for both airports.\n\n| Measure (calendar 2023) | LAX | SNA |\n|---|---|---|\n| System delay rate | 5.6% | 4.2% |\n| Overall delay rate | 20.5% | 18.5% |\n| Load factor | 83.9% | 83.1% |\n\n**Change against the figures I gave earlier** (earlier figures are 3-year, 2023-08 to 2026-07, and latest 12 months, 2025-08 to 2026-07):\n- **LAX:** The system delay rate was 5.6% in 2023, against 5.0% in the latest 12 months. The 3-year figure is 4.8%.\n- **SNA:** The system delay rate was 4.2% in 2023, against 4.3% in the latest 12 months. The 3-year figure is 3.9%. This is essentially flat.\n\nThe gap between the two was wider in 2023 (1.4 percentage points on system delays) than it is now (0.7 points in the latest 12 months). Most of the gap closing comes from LAX improving.\n\nLoad factor fell at both airports from 2023 to the latest period. LAX went from 83.9% to 82.1% and SNA from 83.1% to 80.4%.\n\nThe system delay category is coded by airlines and includes ordinary weather, so it is mostly but not purely congestion. The capacity cut at LAX and the legal cap at SNA that I flagged earlier still apply.",
+   "tools": [
+    {
+     "name": "compare_airports",
+     "input": {
+      "airport_codes": [
+       "LAX",
+       "SNA"
+      ],
+      "year": 2023
+     },
+     "is_error": false
+    }
+   ],
+   "number_check": "passed",
+   "unverified_numbers": [],
+   "numbers_in_answer": 41,
+   "warnings": [
+    "SNA: legal_limit",
+    "LAX: capacity_cut"
+   ],
+   "footer": {
+    "data_period": "BTS T-100 airport-month summary, calendar 2023; BTS Airline Delay Causes, calendar 2023; BTS T-100 Segment, calendar 2023",
+    "assumptions": "proxies, not direct measurements: How full the planes are, System delay rate",
+    "confidence": "Medium",
+    "confidence_reason": "LAX: capacity cut; SNA: legal limit; the answer uses proxy measures (scores, system delay rate, load factor or forecasts)"
+   },
+   "model_calls": 2,
+   "seconds": 7.0,
+   "input_tokens": 34490,
+   "output_tokens": 732,
+   "model": "claude-sonnet-5-5"
+  },
+  {
+   "id": "A3",
+   "group": "core",
+   "conversation": "A3",
+   "question": "What is the percentage of long haul flights out of Anchorage airport?",
+   "pass_when": "One number, the 3,000-mile definition stated, the cargo-included number next to it.",
+   "passed": true,
+   "checks": {
+    "used airport_profile": true,
+    "airports ANC in the tool calls": true,
+    "says /2\\.8/": true,
+    "says /3,000/": true,
+    "says /31(\\.0)?\\s*%/": true,
+    "says /cargo/": true,
+    "number check passed (no fallback)": true,
+    "no error": true,
+    "footer present": true
+   },
+   "answer": "**Anchorage (ANC): 2.8% of departing passenger flights are long-haul.** That uses our default cutoff of 3,000 miles or more, in calendar 2025. It is 1,061 of 38,150 passenger departures. There is no official definition of long-haul, so the cutoff is ours.\n\nIf you count cargo flights too, the share is 31.0% (27,305 of 87,988 departures). Cargo and other non-passenger flights are 56.6% of all departures here, and many of them are long international legs. That is why the two figures differ so much.\n\nThe share is sensitive to the cutoff:\n\n| Cutoff | Passenger flights | All flights incl. cargo |\n|---|---|---|\n| 2,000 miles | 13.7% | 47.4% |\n| 2,500 miles | 9.8% | 43.2% |\n| 3,000 miles | 2.8% | 31.0% |\n\nFor passenger service, ANC is mostly domestic, at 98.6% of passengers. Alaska Airlines is the biggest carrier, with 61.4% of passengers. The cargo-heavy traffic also lowers our data confidence for this airport.",
+   "tools": [
+    {
+     "name": "airport_profile",
+     "input": {
+      "airport_code": "ANC"
+     },
+     "is_error": false
+    }
+   ],
+   "number_check": "passed",
+   "unverified_numbers": [],
+   "numbers_in_answer": 20,
+   "warnings": [
+    "ANC: cargo_heavy"
+   ],
+   "footer": {
+    "data_period": "BTS T-100 airport-month summary, 2025-05 to 2026-04 (latest 12 complete months); BTS T-100 Segment, calendar 2025",
+    "assumptions": "long-haul means 3,000 miles or more (our definition; adjustable)",
+    "confidence": "Medium",
+    "confidence_reason": "ANC: cargo heavy"
+   },
+   "model_calls": 2,
+   "seconds": 4.9,
+   "input_tokens": 16309,
+   "output_tokens": 432,
+   "model": "claude-sonnet-5-5"
+  },
+  {
+   "id": "A7",
+   "group": "follow-up",
+   "conversation": "A3",
+   "question": "What if long-haul means over 2,300 miles?",
+   "pass_when": "Recomputed at 2,300 miles for Anchorage.",
+   "passed": true,
+   "checks": {
+    "used airport_profile": true,
+    "airports ANC in the tool calls": true,
+    "says /12\\.6/": true,
+    "says /2,300/": true,
+    "number check passed (no fallback)": true,
+    "no error": true,
+    "footer present": true
+   },
+   "answer": "With a 2,300-mile cutoff, **12.6% of Anchorage (ANC) departing passenger flights are long-haul.** That is 4,820 of 38,150 flights in calendar 2025.\n\nIf you include cargo flights, the share is 46.5% (40,947 of 87,988 departures).\n\nThe tool counts flights flying at least the cutoff distance, so \"2,300 miles or more\" is what was measured, not strictly \"over 2,300\".\n\nThe 2,300-mile figure sits between the 2,000-mile and 2,500-mile results I showed earlier:\n\n| Cutoff | Passenger flights | All flights incl. cargo |\n|---|---|---|\n| 2,000 miles | 13.7% | 47.4% |\n| 2,300 miles | 12.6% | 46.5% |\n| 2,500 miles | 9.8% | 43.2% |\n| 3,000 miles | 2.8% | 31.0% |\n\nThe passenger share falls steeply between 2,500 and 3,000 miles. Many Anchorage passenger routes are therefore between those distances, so the result is sensitive to where you set the line. The cargo-included share is dominated by cargo flights, which are 56.6% of departures.",
+   "tools": [
+    {
+     "name": "airport_profile",
+     "input": {
+      "airport_code": "ANC",
+      "long_haul_miles": 2300
+     },
+     "is_error": false
+    }
+   ],
+   "number_check": "rewritten",
+   "unverified_numbers": [],
+   "numbers_in_answer": 28,
+   "warnings": [
+    "ANC: cargo_heavy"
+   ],
+   "footer": {
+    "data_period": "BTS T-100 airport-month summary, 2025-05 to 2026-04 (latest 12 complete months); BTS T-100 Segment, calendar 2025",
+    "assumptions": "long-haul means 2,300 miles or more (our definition; adjustable)",
+    "confidence": "Medium",
+    "confidence_reason": "ANC: cargo heavy"
+   },
+   "model_calls": 3,
+   "seconds": 8.6,
+   "input_tokens": 48995,
+   "output_tokens": 868,
+   "model": "claude-sonnet-5-5"
+  },
+  {
+   "id": "A4",
+   "group": "core",
+   "conversation": "A4",
+   "question": "What is the unmet flight demand in SFO airport and why?",
+   "pass_when": "An estimate named as an estimate or proxy, with the why from the delay data.",
+   "passed": true,
+   "checks": {
+    "used airport_profile": true,
+    "airports SFO in the tool calls": true,
+    "says /estimate|proxy/": true,
+    "says /108,307|108,000|108 thousand/": true,
+    "says /13\\.4|17\\.3/": true,
+    "says /delay/": true,
+    "number check passed (no fallback)": true,
+    "no error": true,
+    "footer present": true
+   },
+   "answer": "**Estimate: about 108,307 extra takeoffs and landings a year by 2035 at San Francisco International (SFO).** This is an estimate, not a measurement. I'm calling it unmet demand because SFO is strained today.\n\n**How the estimate works:** It is the FAA forecast of commercial operations for fiscal 2035 (514,527) minus fiscal 2025 (406,220). That is 26.7% growth, and cargo is included. The FAA tends to over-forecast. These are takeoffs plus landings, so don't compare them with BTS departure counts.\n\n**Why it counts as unmet (congestion):**\n- SFO's three-year system delay rate is 13.4%, the highest among full-data airports (position 100 out of 100). In the latest 12 months it is 17.3%.\n- The overall delay rate is 27.4%.\n- About 48.9% of delayed flights are coded to the system category. That category is coded by airlines and includes ordinary weather, so it is mostly congestion but not purely.\n- Airline-caused delays are 24.7%, late-arriving aircraft are 23.7%, and extreme weather is 2.5%.\n- Planes are 82.6% full, which is in the top tier (position 91.2).\n\n**Scores:** SFO's capacity-need score is 86.9, 3rd of 343 airports overall and 2nd of 30 large airports. The flight-side score is 97.1 and the passenger-side score is 76.8.\n\n**Caveats:**\n- Capacity was cut. Seats are 5.0% below 2019 and passengers are 4.4% below 2019. The full planes reflect fewer seats, not rising demand. This is why the data confidence is medium.\n- The FAA forecasts 32.4% passenger growth, or 8,460,579 extra boardings.\n- SFO is under FAA Level 2 schedule facilitation. Schedules are coordinated, but this is not a hard cap.\n- The data has no gate, terminal or construction information, so I can't say whether capacity is already being added.",
+   "tools": [
+    {
+     "name": "airport_profile",
+     "input": {
+      "airport_code": "SFO"
+     },
+     "is_error": false
+    }
+   ],
+   "number_check": "passed",
+   "unverified_numbers": [],
+   "numbers_in_answer": 33,
+   "warnings": [
+    "SFO: capacity_cut"
+   ],
+   "footer": {
+    "data_period": "BTS T-100 airport-month summary, 2025-05 to 2026-04 (latest 12 complete months); FAA Terminal Area Forecast, 2025 edition (published March 2026), fiscal 2035 vs 2025; BTS Airline Delay Causes, 2023-08 to 2026-07 (three years) / 2025-08 to 2026-07 (latest 12 months); FAA passenger boarding data CY2025, calendar 2025; BTS T-100 Segment, calendar 2025",
+    "assumptions": "proxies, not direct measurements: Capacity-need score, Passenger-side score, Flight-side score, How full the planes are, FAA forecast passenger growth, System delay rate; 'unmet flight demand' is an estimate from the FAA forecast, used only when the airport is strained today; scores are relative (position among full-data airports) and rank upside, not return - no cost data exists",
+    "confidence": "Medium",
+    "confidence_reason": "SFO: capacity cut; the answer uses proxy measures (scores, system delay rate, load factor or forecasts)"
+   },
+   "model_calls": 2,
+   "seconds": 7.2,
+   "input_tokens": 16411,
+   "output_tokens": 743,
+   "model": "claude-sonnet-5-5"
+  },
+  {
+   "id": "A5",
+   "group": "follow-up",
+   "conversation": "A4",
+   "question": "How does that compare with Oakland?",
+   "pass_when": "Oakland is not called unmet demand, because it is not strained.",
+   "passed": true,
+   "checks": {
+    "airports OAK in the tool calls": true,
+    "says /Oakland/": true,
+    "says /no unmet|not strained|isn't strained|is not strained|isn't congested|is not congested|not called|rather than unmet|not unmet|doesn't qualify|does not qualify|forecast growth|forecast flight growth/": true,
+    "number check passed (no fallback)": true,
+    "no error": true,
+    "footer present": true
+   },
+   "answer": "**Oakland (OAK) has no unmet flight demand by our definition, and its forecast gap is much smaller than SFO's.** I assumed you meant Oakland San Francisco Bay (OAK). The same metro area also has San Francisco International (SFO) and San Jose (SJC).\n\nOAK's FAA-forecast growth is 30,637 extra takeoffs and landings a year by 2035, against 108,307 for SFO. That is roughly a third of SFO's figure. The gap is only called unmet demand when an airport is strained today, and OAK is not strained. These are estimates, and the FAA tends to over-forecast.\n\n| Metric | SFO | OAK |\n|---|---|---|\n| Capacity-need score | 86.9 (3rd of 343) | 46.0 (208th of 343) |\n| System delay rate, 3 years | 13.4% | 2.3% |\n| System delay rate, latest 12 months | 17.3% | 1.7% |\n| Overall delay rate | 27.4% | 18.4% |\n| Planes full | 82.6% | 74.2% |\n| FAA forecast flight growth | 26.7% | 24.8% |\n| FAA forecast passenger growth | 32.4% | 29.9% |\n| Passenger growth since 2019 | -4.4% | -35.5% |\n\n**Why they differ:** The FAA forecast growth rates are similar. What separates the two is congestion today. OAK's delays are mostly late-arriving aircraft (54.1% of delayed flights), and only 12.3% are coded to the system category. For SFO that share is 48.9%. The system category is coded by airlines and includes ordinary weather.\n\n**Caveats:**\n- Both airports cut capacity. OAK's seats are 31.5% below 2019, and its passengers are 35.5% below 2019. Its fuller planes reflect fewer seats, not rising demand.\n- Cargo is 17.9% of OAK's flights, against 1.2% at SFO, and it shares the runways.\n- Southwest carries 76.7% of OAK's passengers, so the airport depends heavily on one airline.",
+   "tools": [
+    {
+     "name": "find_airport",
+     "input": {
+      "query": "Oakland"
+     },
+     "is_error": false
+    },
+    {
+     "name": "compare_airports",
+     "input": {
+      "airport_codes": [
+       "SFO",
+       "OAK"
+      ]
+     },
+     "is_error": false
+    }
+   ],
+   "number_check": "passed",
+   "unverified_numbers": [],
+   "numbers_in_answer": 36,
+   "warnings": [
+    "SFO: capacity_cut",
+    "OAK: capacity_cut"
+   ],
+   "footer": {
+    "data_period": "BTS T-100 airport-month summary, 2025-05 to 2026-04 (latest 12 complete months); FAA Terminal Area Forecast, 2025 edition (published March 2026), fiscal 2035 vs 2025; BTS Airline Delay Causes, 2023-08 to 2026-07 (three years) / 2025-08 to 2026-07 (latest 12 months); BTS T-100 Segment, calendar 2025",
+    "assumptions": "proxies, not direct measurements: Capacity-need score, How full the planes are, FAA forecast passenger growth, System delay rate, FAA forecast flight growth; scores are relative (position among full-data airports) and rank upside, not return - no cost data exists",
+    "confidence": "Medium",
+    "confidence_reason": "SFO: capacity cut; OAK: capacity cut; the answer uses proxy measures (scores, system delay rate, load factor or forecasts)"
+   },
+   "model_calls": 3,
+   "seconds": 8.5,
+   "input_tokens": 46179,
+   "output_tokens": 842,
+   "model": "claude-sonnet-5-5"
+  }
+ ]
+}

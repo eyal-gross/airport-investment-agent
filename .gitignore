@@ -1,0 +1,24 @@
+# Secrets
+.env
+.streamlit/secrets.toml
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Downloaded and cleaned data (rebuilt by: python -m airport_agent.pipeline.build --refresh).
+# data/serving/ IS committed, so the chat runs straight after a clone.
+data/raw/
+data/clean/
+
+# Logs and local state
+*.log
+logs/
+
+# Editor and OS
+.vscode/
+.DS_Store
+Thumbs.db

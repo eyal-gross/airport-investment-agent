@@ -1,0 +1,35 @@
+alias,target_type,target
+la,city,Los Angeles
+l.a.,city,Los Angeles
+los angeles,city,Los Angeles
+nyc,city,New York
+new york city,city,New York
+dc,city,Washington
+d.c.,city,Washington
+washington dc,city,Washington
+sf,city,San Francisco
+san fran,city,San Francisco
+bay area,city,San Francisco
+vegas,city,Las Vegas
+philly,city,Philadelphia
+orange county,airport,SNA
+john wayne,airport,SNA
+santa ana,airport,SNA
+glacier park,airport,FCA
+kalispell,airport,FCA
+o'hare,airport,ORD
+ohare,airport,ORD
+midway,airport,MDW
+laguardia,airport,LGA
+la guardia,airport,LGA
+kennedy,airport,JFK
+newark,airport,EWR
+reagan,airport,DCA
+washington national,airport,DCA
+dulles,airport,IAD
+love field,airport,DAL
+logan,airport,BOS
+sea-tac,airport,SEA
+seatac,airport,SEA
+bwi,airport,BWI
+hobby,airport,HOU

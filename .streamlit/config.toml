@@ -1,0 +1,18 @@
+# Look of the chat screen. A calm navy-blue accent on white: a tool for analysts, not a consumer app.
+[theme]
+base = "light"
+primaryColor = "#2251B5"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F2F5FA"
+textColor = "#17212F"
+linkColor = "#2251B5"
+borderColor = "#DCE2EC"
+baseRadius = "large"
+showSidebarBorder = true
+
+[theme.sidebar]
+backgroundColor = "#F7F9FC"
+secondaryBackgroundColor = "#EAEFF6"
+
+[client]
+toolbarMode = "minimal"

@@ -1,0 +1,96 @@
+[
+  {"conversation": "A1", "turns": [
+    {"id": "A1", "group": "core", "question": "Which airports in New England are strong candidates for terminal expansion?",
+     "pass_when": "A ranked list from the six states, scores shown, reasons given.",
+     "tool": "rank_airports", "say_all": ["Boston|BOS", "Burlington|BTV", "\\b82\\.9\\b"]}]},
+  {"conversation": "A2", "turns": [
+    {"id": "A2", "group": "core", "question": "Compare LA and Santa Ana airport congestion levels.",
+     "pass_when": "LAX vs SNA side by side, a clear verdict, Santa Ana's legal cap flagged.",
+     "tool": "compare_airports", "codes": ["LAX", "SNA"], "say_all": ["4\\.8", "3\\.9", "cap|capped|limit"]},
+    {"id": "A6", "group": "follow-up", "question": "And how did congestion at those two look in 2023?",
+     "pass_when": "Uses the same two airports without being told again, and 2023 values.",
+     "tool": "compare_airports", "codes": ["LAX", "SNA"], "say_all": ["2023", "5\\.6", "4\\.2"]}]},
+  {"conversation": "A3", "turns": [
+    {"id": "A3", "group": "core", "question": "What is the percentage of long haul flights out of Anchorage airport?",
+     "pass_when": "One number, the 3,000-mile definition stated, the cargo-included number next to it.",
+     "tool": "airport_profile", "codes": ["ANC"], "say_all": ["2\\.8", "3,000", "31(\\.0)?\\s*%", "cargo"]},
+    {"id": "A7", "group": "follow-up", "question": "What if long-haul means over 2,300 miles?",
+     "pass_when": "Recomputed at 2,300 miles for Anchorage.",
+     "tool": "airport_profile", "codes": ["ANC"], "say_all": ["12\\.6", "2,300"]}]},
+  {"conversation": "A4", "turns": [
+    {"id": "A4", "group": "core", "question": "What is the unmet flight demand in SFO airport and why?",
+     "pass_when": "An estimate named as an estimate or proxy, with the why from the delay data.",
+     "tool": "airport_profile", "codes": ["SFO"], "say_all": ["estimate|proxy", "108,307|108,000|108 thousand", "13\\.4|17\\.3", "delay"]},
+    {"id": "A5", "group": "follow-up", "question": "How does that compare with Oakland?",
+     "pass_when": "Oakland is not called unmet demand, because it is not strained.",
+     "codes": ["OAK"], "say_all": ["Oakland", "no unmet|not strained|isn't strained|is not strained|isn't congested|is not congested|not called|rather than unmet|not unmet|doesn't qualify|does not qualify|forecast growth|forecast flight growth"]}]},
+  {"conversation": "A8", "turns": [
+    {"id": "A8", "group": "follow-up", "question": "Is Memphis a good candidate, given its cargo traffic?",
+     "pass_when": "Uses the Memphis profile and the cargo share.",
+     "tool": "airport_profile", "codes": ["MEM"], "say_all": ["cargo", "65"]}]},
+
+  {"conversation": "B1", "turns": [
+    {"id": "B1", "group": "filters", "question": "Score the top 3 airports that have the highest congestion in the US, only small airports.",
+     "pass_when": "Small-hub class, sorted by the system delay rate, three airports with scores; says what 'small' means.",
+     "tool": "rank_airports", "say_all": ["PGD|Punta Gorda", "small"]}]},
+  {"conversation": "B2", "turns": [
+    {"id": "B2", "group": "filters", "question": "Top 5 airports in Texas by how full the planes are.",
+     "pass_when": "Five Texas airports by load factor.", "tool": "rank_airports", "say_all": ["Texas|TX", "Dallas|DFW", "McAllen|MFE", "82\\.5"]}]},
+  {"conversation": "B3", "turns": [
+    {"id": "B3", "group": "filters", "question": "Which large airports have planes over 85% full?",
+     "pass_when": "Large hubs filtered by a load factor threshold; says that none qualifies.", "tool": "rank_airports", "say_all": ["85", "\\bnone\\b|\\bno large|not one|no airport"]}]},
+  {"conversation": "B4", "turns": [
+    {"id": "B4", "group": "ambiguous", "question": "Compare Portland and Providence.",
+     "pass_when": "Asks which Portland (Oregon or Maine), or covers both and says so.",
+     "tool": "find_airport", "say_all": ["Oregon|PDX", "Maine|PWM"]}]},
+  {"conversation": "B5", "turns": [
+    {"id": "B5", "group": "filters", "question": "Which airports are the best candidates overall? Only count the ones with complete data.",
+     "pass_when": "National ranking shown per size class.", "tool": "rank_airports", "say_all": ["large", "small", "Orlando|MCO"]}]},
+  {"conversation": "B6", "turns": [
+    {"id": "B6", "group": "time", "question": "How has passenger traffic at Boston changed since 2019? Give me the year by year picture.",
+     "pass_when": "Year by year values for Boston, with 2026 marked partial.", "codes": ["BOS"], "say_all": ["2020", "2023", "partial|so far|only|through|incomplete|first"]}]},
+  {"conversation": "B7", "turns": [
+    {"id": "B7", "group": "filters", "question": "Show me medium-size airports in the West with the fastest forecast passenger growth.",
+     "pass_when": "West region, medium hubs, sorted by forecast passenger growth.", "tool": "rank_airports", "say_all": ["forecast", "Portland|PDX", "33\\.2"]}]},
+  {"conversation": "B8", "turns": [
+    {"id": "B8", "group": "time", "question": "What's the busiest month at Burlington, Vermont, and how full are the planes then?",
+     "pass_when": "The busiest month and its load factor.", "codes": ["BTV"], "say_all": ["October", "84\\.9|86\\.9|85%"]}]},
+
+  {"conversation": "C1", "turns": [
+    {"id": "C1", "group": "time", "question": "Score the top 3 airports that have the highest congestion in August in the US.",
+     "pass_when": "Ranks by the August system delay rate and says scores do not exist by month.", "tool": "rank_airports", "say_all": ["August", "Newark|EWR"]}]},
+  {"conversation": "C9", "turns": [
+    {"id": "C9", "group": "time", "question": "Which large airports are most congested in summer?",
+     "pass_when": "Ranks large hubs by the summer (June to August) system delay rate, using the season filter; Newark leads.",
+     "tool": "rank_airports", "input_key": "season", "codes": ["EWR"], "say_all": ["summer|June", "Newark|EWR"]},
+    {"id": "C10", "group": "time", "question": "And is it the same ones in winter?",
+     "pass_when": "A follow-up: ranks the same group for winter (December to February); San Francisco leads, so the answer is no.",
+     "tool": "rank_airports", "input_key": "season", "codes": ["SFO"], "say_all": ["winter|December", "San Francisco|SFO"]}]},
+  {"conversation": "C2", "turns": [
+    {"id": "C2", "group": "out of scope", "question": "Where is Delta the dominant airline?",
+     "pass_when": "Says airline-network questions are not supported; may offer the biggest-airline share per airport.",
+     "say_all": ["can't|cannot|not available|don't have|not supported|isn't something|not something|no way to|unable|doesn't support|does not support|not able|only"]}]},
+  {"conversation": "C3", "turns": [
+    {"id": "C3", "group": "out of scope", "question": "How many flights go from JFK to London?",
+     "pass_when": "Declines: route-level questions are not supported.",
+     "say_all": ["can't|cannot|not available|don't have|not supported|isn't something|not something|unable|doesn't support|does not support|not able"]}]},
+  {"conversation": "C4", "turns": [
+    {"id": "C4", "group": "out of scope", "question": "What's the congestion level at Teterboro?",
+     "pass_when": "Says Teterboro is outside the covered airports; no invented number.",
+     "tool": "find_airport", "say_all": ["not covered|outside|isn't covered|is not covered|not in|isn't in|not among|not one of|isn't one of|don't have|no data"]}]},
+  {"conversation": "C5", "turns": [
+    {"id": "C5", "group": "out of scope", "question": "Which airports were the top expansion candidates in 2021?",
+     "pass_when": "Says the score exists for the latest period only; offers raw 2021 metrics.",
+     "say_all": ["score", "latest|current|today|only", "2021"]}]},
+  {"conversation": "C6", "turns": [
+    {"id": "C6", "group": "judgment", "question": "Should we invest in expanding LaGuardia?",
+     "pass_when": "Gives the evidence and the slot limit; leaves the decision to the analyst.",
+     "codes": ["LGA"], "say_all": ["slot|cap on flights|flight cap|caps flights"]}]},
+  {"conversation": "C7", "turns": [
+    {"id": "C7", "group": "out of scope", "question": "What will a new terminal at Denver cost, and what return would we get?",
+     "pass_when": "Declines cost and return; offers the capacity-need evidence.",
+     "say_all": ["can't|cannot|no cost|not available|don't have|unable|not able|isn't any cost|no .*cost data"]}]},
+  {"conversation": "C8", "turns": [
+    {"id": "C8", "group": "awkward data", "question": "What is the delay rate at Glacier Park airport in Kalispell, and can I trust it?",
+     "pass_when": "Resolves Glacier Park to FCA, gives the rate and the sample size.", "codes": ["FCA"], "say_all": ["4\\.0|4%", "flights|sample"]}]}
+]

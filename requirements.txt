@@ -1,0 +1,11 @@
+# Versions the build and the committed evaluation ran on (Python 3.13).
+anthropic==1.11.0
+pandas==3.0.6
+pyarrow==25.0.1
+openpyxl==3.1.5
+PyYAML==6.0.3
+requests==2.34.2
+python-dotenv==1.2.4
+streamlit==1.64.0
+pytest==9.1.1
+faster-whisper==1.2.1   # voice: local speech to text, no extra API key

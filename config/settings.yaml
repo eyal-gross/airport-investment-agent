@@ -1,0 +1,40 @@
+# Every number that is a choice, not a fact. Change here, bump score_version, rerun the build.
+score_version: "1.0"
+
+baseline_year: 2019
+forecast_base_year: 2025        # first forecast year in the FAA edition below
+forecast_horizon_years: 10      # so growth is 2035 vs 2025
+
+delay_window_months: 36         # three-year system delay rate, from summed counts
+min_delay_flights: 1000         # arriving flights needed in the measured window (three years, or one year in a year view) before a delay rate is shown
+small_sample_delay_flights: 3000   # below this (under 1,000 a year) the rate is shown with a small-sample warning and low confidence
+min_months_latest: 10           # months needed in the latest 12 for a load factor
+min_baseline_passengers: 10000  # below this, growth since the baseline year is not meaningful
+
+long_haul_miles_default: 3000
+long_haul_cutoffs: [2000, 2500, 3000]
+
+strained_percentile: 75         # "strained" = system delay rate in the top quarter of full-data airports
+recent_spike_months: 4          # a rise in the latest 12 months is "concentrated" when the newest 4 months ...
+recent_spike_ratio: 2           # ... run at least 2x the same months a year earlier AND 2x the other 8 months
+dominant_airline_pct: 75        # one airline's share of passengers that triggers the single-airline warning (a business risk, not a data-quality issue)
+cargo_heavy_pct: 30           # cargo share of flights that triggers the cargo warning
+sources_disagree_pct: 15        # BTS passengers vs FAA boardings
+small_forecast_boardings: 100000   # below this the FAA forecast uses simple trend methods
+
+# Constraint flags
+flights_flat_max_pct: 2         # passenger flights changed by no more than +2% since the baseline ...
+passengers_up_min_pct: 5        # ... while passengers rose at least 5%
+seats_cut_max_pct: -5           # seats down at least 5% ...
+passengers_flat_max_pct: 2      # ... while passengers are flat or down
+
+# Sources that carry a year in their name
+faa_forecast_url: "https://taf.faa.gov/Downloads/APO100_TAF_Final_2025.zip"
+faa_forecast_file: "taf2025.zip"
+faa_forecast_edition: "2025 edition (published March 2026), fiscal"
+faa_boardings_url: "https://www.faa.gov/airports/planning_capacity/passenger_allcargo_stats/passenger/arp-cy2025-commercial-service-enplanements.xlsx"
+faa_boardings_file: "arp-cy2025-commercial-service-enplanements.xlsx"
+faa_boardings_year: 2025
+route_years: [2019, 2024, 2025, 2026]
+route_year_latest_full: 2025
+delay_first_year: 2019
